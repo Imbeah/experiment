@@ -1,0 +1,49 @@
+<div class="jumbotron text-center">
+  <h1>Experiment Blog</h1>
+  <p>Let the world hear your views, thoughts and opinion</p>
+  <p>
+  <% if user_signed_in? %>
+    Welcome <%= current_user.name %>, <%= link_to "Post Article", new_article_path, class: "btn btn-success btn-xs" %>
+  <% else %>
+    <%= link_to "Sign up now", new_user_registration_path, class: "btn btn-primary btn-lg" %> or <%= link_to "Sign in now", new_user_session_path, class: "btn btn-success btn-lg" %>
+  <% end %>
+
+  </p>
+</div>
+
+<h1 class="text-center">All Published Articles</h1>
+<hr>
+<div class="row">
+  <% @articles.each do |article| %>
+    <div class="col-md-4">
+      <div class="panel panel-default">
+        <div class="panel-heading">
+         <div class="panel-title">
+           <h3><%= link_to article.title, article_path(article) %></h3>
+           <div class="pull-right gravatar">
+            <span><%= gravatar_for(article.user) %></span>
+           </div>
+         </div>
+        </div>
+        <div class="panel-body">
+         <p><%= truncate(article.description, length: 50) %></p>
+        </div>
+        <div class="meta-details">
+          <small>Created:<em> <%= time_ago_in_words(article.created_at) %> ago by </em> <%= article.user.name %></small>
+        </div>
+        <div class="panel-footer">
+          <%= link_to 'Read this article', article_path(article), class: "btn btn-success btn-xs" %>
+        <% if article.user == current_user %>
+          <%= link_to 'Edit this article', edit_article_path(article), class: "btn btn-primary btn-xs" %>
+          <%= link_to 'Delete this article', article, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger btn-xs" %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  <% end %>
+</div>
+
+
+ <div class="text-center">
+    <%= will_paginate %>
+  </div>

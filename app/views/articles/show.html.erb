@@ -1,0 +1,15 @@
+<div class="row">
+  <div class="col-md-2 col-md-offset-2 well text-center">
+    <%= gravatar_for(@article.user)%> <br>
+    <span><%= @article.user.name %> <small>(<%= pluralize(@article.user.articles.count, 'article') %>)</small></span>
+    <% if @article.user == current_user %>
+    <br>
+    <%= link_to "Edit", edit_article_path(@article), class: "btn btn-primary btn-xs" %> <%= link_to "Delete", article_path(@article), method: :delete, data: {confirm: "Are you sure?"}, class: "btn btn-danger btn-xs" %>
+    <% end %>
+    <%= link_to "View All Articles", articles_path, class: "btn btn-success btn-xs" %>
+  </div>
+  <div class="col-md-8 article-title article-description">
+    <h1><%= @article.title %></h1>
+    <p><%= @article.description %></p>
+  </div>
+</div>

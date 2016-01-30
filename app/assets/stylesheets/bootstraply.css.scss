@@ -1,0 +1,24 @@
+@import 'bootstrap-sprockets';
+@import 'bootstrap';
+
+.meta-details {
+  padding-left: 20px;
+}
+
+.article-title h1 {
+  margin: 0;
+  padding-bottom: 10px;
+  border-bottom: 1px solid #eaeaea;
+}
+
+.article-description p {
+  margin-top: 20px;
+}
+
+.gravatar {
+  position: relative;
+  top: 70px;
+  right: -10px;
+  bottom: 0px;
+}
+
